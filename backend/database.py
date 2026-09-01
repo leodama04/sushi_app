@@ -1,6 +1,6 @@
 import os
 
-from typing import Annotated
+from typing import Annotated, TypeAlias
 from dotenv import load_dotenv
 from sqlmodel import Session, SQLModel, create_engine
 from fastapi import Depends
@@ -30,4 +30,4 @@ def get_session():
     with Session(engine) as session:
         yield session
 
-SessionDep = Annotated[Session, Depends(get_session)]
+SessionDep: TypeAlias = Annotated[Session, Depends(get_session)]
